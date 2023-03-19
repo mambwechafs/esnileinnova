@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <main id="main">
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../static/img/blog-header.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center">
+      <h2>Blog</h2>
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Blog</li>
+      </ol>
+    </div>
+  </div><!-- End Breadcrumbs -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+  <h1>Register</h1>
+  <form method="POST" action="{{ url_for('register') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.username.label(class='form-control-label') }}
+      {{ form.username(class='form-control') }}
+      {% for error in form.username.errors %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.email.label(class='form-control-label') }}
+      {{ form.email(class='form-control') }}
+      {% for error in form.email.errors %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.password_hash.label(class="form-label") }}
+      {{ form.password_hash(class="form-control") }}
+      {% for error in form.password.errors %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.password_hash2.label(class="form-label") }}
+      {{ form.password_hash2(class="form-control") }}
+      {% for error in form.confirm_password.errors %}
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+{% endblock %}

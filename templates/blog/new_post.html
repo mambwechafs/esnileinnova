@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main id="main">
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../static/img/blog-header.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center">
+      <h2>Blog</h2>
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Blog</li>
+      </ol>
+    </div>
+  </div><!-- End Breadcrumbs -->
+{% for message in get_flashed_messages() %}
+  
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  
+{% endfor %}
+  <!-- ======= Blog ======= -->
+ <div class="section-header">
+          <h2>New Blog Post</h2>
+            </div>
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <form method="POST">
+                {{ form.hidden_tag() }}
+
+                {{ form.title.label(class="form-label") }}
+
+                {{ form.title(class="form-control") }}
+                <br/>
+                {{ form.author.label(class="form-label") }}
+
+                {{ form.author(class="form-control") }}
+
+                <br/>
+                {{ form.slug.label(class="form-label") }}
+
+                {{ form.slug(class="form-control") }}
+                <br/>
+                {{ form.content.label(class="form-label") }}
+
+                {{ form.content(class="form-control", rows=5) }}
+                <br/>
+
+                {{ form.cover_image.label(class="form-label") }}
+                {{ form.cover_image(class="form-control-file") }}
+
+                <br/>
+
+                {{ form.inner_image.label(class="form-label") }}
+                {{ form.inner_image(class="form-control-file") }}
+
+                <br/>
+
+                </div>
+                </div>
+
+                {{ form.submit(class="btn btn-secondary") }}
+                </form>
+
+            </div>
+         
+      
+    </div>
+  </section><!-- End Blog -->
+</main>
+{% endblock %}
